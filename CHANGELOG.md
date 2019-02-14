@@ -1,9 +1,10 @@
 # CHANGELOG - TYPO3 tt_news Importer
 
-## 2.3.3RC1
+## 2.3.3
 * Change FAQ link
 * Change Donate link
 * Confirm WordPress 5.0 compatibility
+* Fix PHP7 compatibility issue
 
 ## 2.3.2
 * RESOLVE #6 Error: Unable to connect to the database
