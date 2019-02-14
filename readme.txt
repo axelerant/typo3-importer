@@ -1,11 +1,11 @@
 === TYPO3 tt_news Importer ===
 
 Contributors: comprock,saurabhd,subharanjan
-Donate link: https://axelerant.com/about-axelerant/donate/
+Donate link: https://store.axelerant.com/donate/
 Tags: typo3, import
 Requires at least: 3.9.2
-Tested up to: 4.5.0
-Stable tag: 2.3.2
+Tested up to: 5.0.3
+Stable tag: 2.3.3RC1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -172,12 +172,12 @@ Inline and related images will be added to the Media Library. The first image fo
 
 = Most Common Issues =
 
-* Got `Parse error: syntax error, unexpected T_STATIC, expecting ')'`? Read [Most Axelerant Plugins Require PHP 5.3+](https://nodedesk.zendesk.com/hc/en-us/articles/202331041) for the fixes.
-* [Debug common theme and plugin conflicts](https://nodedesk.zendesk.com/hc/en-us/articles/202330781)
+* Got `Parse error: syntax error, unexpected T_STATIC, expecting ')'`? Read [Most Axelerant Plugins Require PHP 5.3+](https://axelerant.atlassian.net/wiki/spaces/WPFAQ/pages/12845151/Most+Axelerant+Plugins+Require+PHP+5.3+) for the fixes.
+* [Debug common theme and plugin conflicts](https://axelerant.atlassian.net/wiki/spaces/WPFAQ/pages/12845113/How+to+Debug+common+issues)
 
 = Still Stuck or Want Something Done? Get Support! =
 
-1. [TYPO3 tt_news Importer Knowledge Base](https://nodedesk.zendesk.com/hc/en-us/sections/200861112-WordPress-FAQs) - read and comment upon frequently asked questions
+1. [TYPO3 tt_news Importer Knowledge Base](https://axelerant.atlassian.net/wiki/spaces/WPFAQ/) - read and comment upon frequently asked questions
 1. [Open TYPO3 tt_news Importer Issues](https://github.com/michael-cannon/typo3-importer/issues) - review and submit bug reports and enhancement requests
 1. [TYPO3 tt_news Importer Support on WordPress](http://wordpress.org/support/plugin/typo3-importer) - ask questions and review responses
 1. [Contribute Code to TYPO3 tt_news Importer](https://github.com/michael-cannon/typo3-importer/blob/master/CONTRIBUTING.md)
