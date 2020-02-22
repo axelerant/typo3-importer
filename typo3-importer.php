@@ -328,7 +328,7 @@ EOD;
 
 	function show_errors() {
 		echo '<h3>';
-		_e( 'Errors found, see below', 'typo3-importer' );
+		_e( 'Errors found, see below' , 'typo3-importer');
 		echo '</h3>';
 		echo '<ul class="error">';
 		foreach ( $this->errors as $key => $error ) {
@@ -742,12 +742,17 @@ EOD;
 		// Cleaning up and linking the title
 		$post_title				= isset( $news['title'] ) ? $news['title'] : '';
 		$post_title				= strip_tags( $post_title ); // Can't have tags in the title in WP
-		$post_title				= trim( $post_title );
-
+		$post_title				= trim($post_title);
+		$post_title				= $this->conversion($post_title);
+		
 		// Clean up content
 		// TYPO3 stores bodytext usually in psuedo HTML
-		$post_content			= $this->_prepare_content( $news['bodytext'] );
+		
+		
+		$post_content			= $this->_prepare_content($this->conversion($news['bodytext']));
 
+		//echo $post_title;
+		
 		// Handle any tags associated with the post
 		$tags_input				= ! empty( $news['props']['keywords'] ) ? $news['props']['keywords'] : '';
 
@@ -778,6 +783,13 @@ EOD;
 
 		return $post_id;
 	}
+	
+	function conversion($string) {
+        $search = array("â‚¬","â€š","Æ’","â€ž","â€¦","â€","â€¡","Ë†","â€°","Å","â€¹","Å’","Å½","â€˜","â€™","â€œ","â€","â€¢","â€“","â€”","Ëœ","â„¢","Å¡","â€º","Å“","Å¾","Å¸","Â¡","Â¢","Â£","Â¤","Â¥","Â¦","Â§","Â¨","Â©","Âª","Â«","Â¬","Â®","Â¯","Â°","Â±","Â²","Â³","Â´","Âµ","Â¶","Â·","Â¸","Â¹","Âº","Â»","Â¼","Â½","Â¾","Â¿","Ã€","Ã‚","Ãƒ","Ã„","Ã…","Ã†","Ã‡","Ãˆ","Ã‰","ÃŠ","Ã‹","ÃŒ","ÃŽ","Ã‘","Ã’","Ã“","Ã”","Ã•","Ã–","Ã—","Ã˜","Ã™","Ãš","Ã›","Ãœ","Ãž","ÃŸ","Ã¡","Ã¢","Ã£","Ã¤","Ã¥","Ã¦","Ã§","Ã¨","Ã©","Ãª","Ã«","Ã¬","Ã­","Ã®","Ã¯","Ã°","Ã±","Ã²","Ã³","Ã´","Ãµ","Ã¶","Ã·","Ã¸","Ã¹","Ãº","Ã»","Ã¼","Ã½","Ã¾","Ã¿","Ã","†™","†");
+        $replace = array("€","‚","ƒ","„","…","†","‡","ˆ","‰","Š","‹","Œ","Ž","‘","’","“","”","•","–","—","˜","™","š","›","œ","ž","Ÿ","¡","¢","£","¤","¥","¦","§","¨","©","ª","«","¬","®","¯","°","±","²","³","´","µ","¶","·","¸","¹","º","»","¼","½","¾","¿","À","Á","Ã","Ä","Å","Æ","Ç","È","É","Ê","Ë","Ì","Î","Ñ","Ò","Ó","Ô","Õ","Ö","×","Ø","Ù","Ú","Û","Ü","Þ","ß","á","â","ã","ä","å","æ","ç","è","é","ê","ë","ì","í","î","ï","ð","ñ","ò","ó","ô","õ","ö","÷","ø","ù","ú","û","ü","ý","þ","ÿ","à","'","-");
+                
+        return str_replace($search, $replace, $string);
+    }
 
 	function insert_postmeta( $post_id, $post ) {
 		// Need the original TYPO3 id for comments
@@ -1398,13 +1410,13 @@ EOD;
 		$row['props']['keywords']		= $row['keywords'];
 		unset($row['keywords']);
 
-		$row['props']['comments']		= $row['comments'];
+		$row['props']['comments']		= $this->conversion($row['comments']);
 		unset($row['comments']);
 
-		$row['props']['excerpt']		= $row['excerpt'];
+		$row['props']['excerpt']		= $this->conversion($row['excerpt']);
 		unset($row['excerpt']);
 
-		$row['props']['author']			= $row['author'];
+		$row['props']['author']			= utf8_decode($row['author']);
 		unset($row['author']);
 
 		$row['props']['author_email']	= $row['author_email'];
@@ -1413,13 +1425,13 @@ EOD;
 		$row['props']['image']			= $row['image'];
 		unset($row['image']);
 
-		$row['props']['imagecaption']	= $row['imagecaption'];
+		$row['props']['imagecaption']	= $this->conversion($row['imagecaption']);
 		unset($row['imagecaption']);
 
 		$row['props']['news_files']		= $row['news_files'];
 		unset($row['news_files']);
 
-		$row['props']['links']			= $row['links'];
+		$row['props']['links']			= utf8_decode($row['links']);
 		unset($row['links']);
 
 		$row['props']['slug']			= $this->_typo3_api_news_slug($row['itemid']);
